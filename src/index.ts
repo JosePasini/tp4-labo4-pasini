@@ -1,6 +1,9 @@
 //import express from "express"; 
 const express = require("express");
 const app = express(); 
+const cors = require("cors");
+app.use(cors());
+app.use("/assets", express.static('./assets/'));
 
 import rutas from "./rutas"
 

@@ -9,7 +9,7 @@ export const getEmpleados = (req: Request, res: Response) => new Promise((resolv
             res.send(err)
         }
         console.log("MySQL Connection: " + connection.threadId)
-        connection.query("SELECT * FROM empleados LIMIT 10", (err, results) => {
+        connection.query("SELECT * FROM empleados", (err, results) => {
             if (err) console.error(err); 
             res.send(results)
         })
@@ -37,7 +37,7 @@ export const addEmpleado = (req: Request, res: Response) => {
     cxMysql.getConnection((err, connection) => {
         if (err)
         { console.error(err);
-        res.send(err)
+        res.json({message: "Error agregando empleado."})
         return
         } else {
             let sql:string = "INSERT INTO empleados(apellido, nombre, dni, sector, fecha, activo) VALUES (?,?,?,?,?,?)"
